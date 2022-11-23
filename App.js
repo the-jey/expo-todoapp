@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
   View,
+  ScrollView,
 } from "react-native";
 
 import Task from "./components/Task";
@@ -33,14 +34,14 @@ export default function App() {
       {/* Today's Tasks */}
       <View style={styles.taskWrapper}>
         <Text style={styles.sectionTitle}>Today's tasks</Text>
-        <View style={styles.items}>
+        <ScrollView style={styles.items}>
           {/* This is where the tasks will go */}
           {taskItems.map((item, i) => (
             <TouchableOpacity key={i} onPress={() => completeTask(i)}>
               <Task text={item} />
             </TouchableOpacity>
           ))}
-        </View>
+        </ScrollView>
       </View>
       {/* Write a task */}
       <KeyboardAvoidingView
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E8EAED",
   },
   taskWrapper: {
+    flex: 5,
     paddingTop: 80,
     paddingHorizontal: 20,
   },
@@ -81,8 +83,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   writeTaskWrapper: {
-    position: "absolute",
-    bottom: 60,
+    paddingBottom: 10,
+    flex: 1,
     width: "100%",
     flexDirection: "row",
     justifyContent: "space-around",
